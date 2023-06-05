@@ -1,5 +1,5 @@
 body {
-    background-color: #0a68bb;
+    /* background-color: #0a68bb; */
     background-image: url('./LibBackground.jpg');
     background-size : cover;
 }
@@ -17,6 +17,10 @@ menu {
   border-radius : 3px;
 }
 
+menu a{
+  text-decoration: none;
+}
+
 menu:after , menu:before {
   display : block;
   content : ' ';
@@ -28,17 +32,24 @@ menu:after {
 
 li {
   list-style-type : none;
-  background      : linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%);
+  /* background      : linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%); */
+  /* background-color: lightcoral; */
 
   float   : left;
   cursor  : pointer;
   padding : 3px 10px;
-  border-top    : 2px solid rgba(200,200,255,0.5);
-  border-bottom : 2px solid rgba(50,50,50,0.4);
+  border: white 4px solid;
+  /* border   : 2px solid rgba(200,200,255,0.5); */
+  /* border-bottom : 2px solid rgba(50,50,50,0.4); */
 }
 
 li:first-child {
   border-radius : 5px 0 0 5px;
+}
+
+li:nth-child(even){
+  border-right:none;
+  border-left: none;
 }
 
 li:last-child {
@@ -61,6 +72,7 @@ li:hover p {
   top   : -20px;
   color : #4eacff;
   background-color: #fff;
+  /* background-color: grey; */
   box-shadow : 0 0 5px 0 rgba(255, 255, 255, 0.7);
   transition : all .4s;
 }
@@ -83,36 +95,3 @@ li:hover p:after {
 }
 
 /*************************************/
-
-/* .menu2 {
-width : 350px;
-}
-
-.menu2 a {
-font-family : georgia;
-font-size   : 14px;
-font-style  : italic;
-text-transform : capitalize;
-}
-
-.menu2 li {
-border-right  : 1px solid rgba(200,200,255,0.5);
-border-left   : 1px solid rgba(40,40,40,0.2); 
-}
-
-.selected {
-top   : -20px;
-color : #4eacff;
-background-color: #fff;
-box-shadow : 0 0 5px 0 rgba(255, 255, 255, 0.7);
-transition : all .4s;
-}
-
-.selected:after {
-border-color : white transparent transparent transparent;
-transition   : all .4s;
-}
-
-a.fun {
-display : none;
-} */
