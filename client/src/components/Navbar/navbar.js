@@ -1,6 +1,5 @@
 import "./navstyle.css";
 import {Link} from "react-router-dom";
-import {GoogleLogin} from "react-google-login";
 
 export const Navbar=()=>{
     return(<>

@@ -1,5 +1,5 @@
 export const Locate=()=>{
-    return(<>
-        Locate Works!!
-    </>)
+    return(<div className="page-body">
+        Locate
+    </div>)
 }

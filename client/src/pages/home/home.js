@@ -1,5 +1,5 @@
 export const Home=()=>{
-    return(<>
-        Home Works
-    </>)
+    return(<div className="page-body">
+        Home
+    </div>)
 };

@@ -2,8 +2,8 @@ import './App.css';
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 
 // pages
-import {Login,SignUP} from "./pages/auth/auth";
-import {Home} from "./pages/home/home";
+import { Login , SignUP } from "./pages/auth/auth";
+import { Home } from "./pages/home/home";
 import { Locate } from './pages/locate/locate';
 
 // components
