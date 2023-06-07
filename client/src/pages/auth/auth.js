@@ -8,19 +8,21 @@ const client_Id=process.env.REACT_APP_ClientId;
 const googleApi=process.env.REACT_APP_googleApi;
 
 export const Login=()=>{
-    return(<div className="page-body">
-        
-            <h1>Log In</h1>
+    return(<div className="page-body w-50 mx-auto p-5 mt-4 border shadow">
+            <h1 className="fw-bold">Log In</h1>
             <form>
                 <br/>
-                <input type="text" placeholder="Username"/>
+                <input type="text" className="form-control" placeholder="Username"/>
                 <br/>
-                <input type="password" placeholder="Password"/>
+                <input type="password" className="form-control" placeholder="Password"/>
                 <br/>
-                <button>Login</button>
+                <button className="btn btn-primary fw-bold">Login</button>
                 <br/>
                 <br/>
-                <Link to={"/signup"}>Sign UP</Link>
+                <hr/>
+                <p style={{color:"black",fontSize:"2vh"}} className="fw-bold" >NEW HERE??</p>
+                <h3 className="fw-bold">Create new account </h3>
+                <Link to={"/signup"} className="btn btn-info fw-bold">Sign UP</Link>
             </form>
     </div>)
 }
@@ -65,25 +67,31 @@ export const SignUP=()=>{
     }
 
     return(
-    <div className="page-body">
+    <div className="page-body w-50 mx-auto p-5 mt-4 border shadow">
         <GoogleOAuthProvider
             clientId={client_Id}
         >
-            <h1>Sign Up</h1>
+            <h1 className="fw-bold">Sign Up</h1>
 
             <form>
                 <br/>
-                <input type="text" placeholder="Username"/>
+                <input type="text" className="form-control" placeholder="Username"/>
                 <br/>
-                <input type="password" placeholder="Password"/>
+                <input type="password" className="form-control" placeholder="Password"/>
                 <br/>
-                <button>Sign UP</button>
+                <button className="btn btn-primary">Sign UP</button>
                 <br/>
                 <br/>
-                {/* <Link to={"/login"}>Log In</Link> */}
+                <hr/>
+
+                <span style={{color:"black",fontSize:"3vh"}} className="fw-bold" >
+                    Wanna Login➡
+                    <Link to={"/login"} className="btn btn-info mx-2 fw-bold">Log In</Link>  
+                </span>
+                
             </form>
 
-            <div>
+            <div className="mt-5">
             {
                 user?(
                     <div>Logged In</div>
