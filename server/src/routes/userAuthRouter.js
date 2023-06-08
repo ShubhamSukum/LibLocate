@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
 
-import {userModel} from "../models/users.js";
+import {userModel} from "../models/googleusers.js";
+import {normalUserModel} from "../models/users.js";
 
 const app=express();
 
@@ -28,5 +29,21 @@ userAuthRouter.post("/addGoogleUser",async(req,res)=>{
 
     res.send({profilePic,username});
 });
+
+userAuthRouter.post("/addUser",async(req,res)=>{
+    const {logUsername,logPass}=req.body;
+    const search=await normalUserModel.findOne({username:logUsername});
+    // console.log(logUsername,logPass);
+
+    if(!search){
+        const newUser=new normalUserModel({username:logUsername,password:logPass});
+        const ok=await newUser.save();
+        res.json({message:"User Registered!!"});
+    }
+    else{
+        res.json({message:"User Exist!! Try Another Username or Sign IN with GOOGLE"});
+    }
+    
+})
 
 export {userAuthRouter};

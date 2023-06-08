@@ -1,27 +1,17 @@
 import mongoose from "mongoose";
 
 const userSchema=new mongoose.Schema({
-    _id:{
-        type:Number,
-        required:false
-    },
-    email:{
+    username:{
         type:String,
-        required:false
+        required:true
     },
     password:{
         type:String,
-        reuired:false
-    },
-    username:{
-        type:String,
-        reuired:false
-    },
-    profilePic:{
-        type:String,
-        default:"https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg",
-        reuired:false
+        required:true
     }
-},{versionKey:false,timestamps:true});
+},{
+    versionKey:false,
+    timestamps:true
+});
 
-export const userModel=mongoose.model("users",userSchema);
+export const normalUserModel=mongoose.model("users",userSchema);
