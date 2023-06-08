@@ -1,23 +1,26 @@
-import {Link} from "react-router-dom";
-import {GoogleOAuthProvider,GoogleLogin,googleLogout} from "@react-oauth/google";
-import jwt_decode from "jwt-decode";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+
+import { useState,useRef, useEffect } from "react";
+import {GoogleOAuthProvider,GoogleLogin} from "@react-oauth/google";    // googleLogout not used
+import {Link,useNavigate} from "react-router-dom";
+import {useCookies} from "react-cookie";
+
 import "./auth.css";
-import { useState } from "react";
 
 const client_Id=process.env.REACT_APP_ClientId;
 const googleApi=process.env.REACT_APP_googleApi;
 const normalApi=process.env.REACT_APP_normalApi;
 
 export const Login=()=>{
-     
+    const [,setCookies]=useCookies(["access_token"])
+    const navigate= useNavigate();
     const user=false;
 
     const signed=async(res)=>{
         // console.log(res.credential);
         const decoded=await jwt_decode(res.credential);
-        // console.log(decoded);
-
+        // console.log("Login "+ decoded);
         const user={
             _id:decoded.sub,
             email:decoded.email,
@@ -26,26 +29,20 @@ export const Login=()=>{
         }
 
         // console.log(user);
-        
 
         await axios.post(`http://localhost:3001/${googleApi}`,user)
         .then((res)=>{
-            const username=res.data.username;
-            const picture=res.data.profilePic;
             
-            if(res.data.message){
-                return alert(res.data.message);
-            }   
-
-            alert("Username => "+username+"\n Picture => "+picture);
-
-            // console.log(res.data.profilePic ,res.data.username);
+            setCookies("access_token", res.data.token, { path: "/", domain: "localhost" })
+            window.localStorage.setItem("userID", res.data.userId);
+            navigate("/");
+            
+            // const username=res.data.username;
+            // const picture=res.data.profilePic;
         })
         .catch((err)=>{
-            console.log(err);
             alert(err);
-        });
-
+        })
     }
 
     return(<div className="page-body w-50 mx-auto p-5 mt-4 border shadow">
@@ -94,16 +91,30 @@ export const Login=()=>{
 
 export const SignUP=()=>{
     const [logUsername,setLogUsername]=useState("");
-    const [logPass,setLogPass]=useState("");
-
+    const [logPass,setLogPass]=useState("")
+    const [,setCookies]=useCookies(["access_token"])
+    
     const user=false;
+    const ref=useRef(null);
+    const navigate= useNavigate();
+
+    useEffect(()=>{
+        if(ref.current){
+            ref.current?.focus();
+        }
+    },[ref]);
 
     const formsubmit=async(e)=>{
         e.preventDefault();
 
         await axios.post(`http://localhost:3001/${normalApi}`,{logUsername,logPass})
         .then((res)=>{
-            console.log(res.data);
+            if(res.data.success===true){
+                alert(res.data.message);
+            }else{
+                alert(res.data.message);
+            }
+            
         })
         .catch((err)=>{
             console.log(err);
@@ -125,15 +136,13 @@ export const SignUP=()=>{
 
         await axios.post(`http://localhost:3001/${googleApi}`,user)
         .then((res)=>{
-            const username=res.data.username;
-            const picture=res.data.profilePic;
-            
-            if(res.data.message){
-                return alert(res.data.message);
-            }
 
-            alert("Username => "+username+"\n Picture => "+picture)
-            // console.log(res.data.profilePic ,res.data.username);
+            setCookies("access_token", res.data.token, { path: "/", domain: "localhost" })
+            window.localStorage.setItem("userID", res.data.userId);
+            navigate("/");
+            
+            // const username=res.data.username;
+            // const picture=res.data.profilePic;
         })
         .catch((err)=>{
             alert(err);
@@ -150,7 +159,7 @@ export const SignUP=()=>{
             <form onSubmit={formsubmit}>
                 <br/>
                 <input type="text" className="form-control" placeholder="Username" 
-                    onChange={(e)=>setLogUsername(e.target.value)}/>
+                    onChange={(e)=>setLogUsername(e.target.value)} ref={ref}/>
                 <br/>
                 <input type="password" className="form-control" placeholder="Password"
                     onChange={(e)=>setLogPass(e.target.value)}/>

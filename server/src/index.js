@@ -18,7 +18,15 @@ const link_DB=process.env.link_DB;
 const meNahiBataunga=process.env.apiStart;
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+
+app.use(cors({
+    origin: 'http://localhost:3001',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+    exposedHeaders: ['Cross-Origin-Opener-Policy'],
+    optionsSuccessStatus: 200
+}));
 
 // APIs
 app.use(meNahiBataunga,userAuthRouter);
