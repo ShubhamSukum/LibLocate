@@ -1,0 +1,8 @@
+.page-body{
+    margin-top: 2vh;  
+    height:85vh;
+    width:95vw;
+    background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%);
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+  }

@@ -7,7 +7,7 @@ import { Home } from "./pages/home/home";
 import { Locate } from './pages/locate/locate';
 
 // components
-import { Navbar } from "./components/Navbar/navbar"
+import { Navbar } from "./components/navbar";
 
 function App() {
   return (
