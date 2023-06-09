@@ -21,7 +21,7 @@ app.use(express.json());
 // app.use(cors());
 
 app.use(cors({
-    origin: 'http://localhost:3001',
+    origin: 'http://localhost:3000',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
     exposedHeaders: ['Cross-Origin-Opener-Policy'],
@@ -36,7 +36,7 @@ mongoose.connect(link_DB,{
         useNewUrlParser:true,
         useUnifiedTopology:true,
     }
-).then(()=>{
+).then(()=>{    
     console.log("database connected!!");
     
     app.listen(PORT,()=>{

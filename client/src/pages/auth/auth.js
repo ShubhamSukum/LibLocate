@@ -11,16 +11,45 @@ import "./auth.css";
 const client_Id=process.env.REACT_APP_ClientId;
 const googleApi=process.env.REACT_APP_googleApi;
 const normalApi=process.env.REACT_APP_normalApi;
+const login=process.env.REACT_APP_normalLog;
 
 export const Login=()=>{
-    const [,setCookies]=useCookies(["access_token"])
+    const [logUsername,setLogUsername]=useState("");
+    const [logPass,setLogPass]=useState("");
+    const [,setCookies]=useCookies(["access_token"]);
+
     const navigate= useNavigate();
+    const ref=useRef(null);
     const user=false;
 
+    useEffect(()=>{
+        if(ref.current){
+            return ref.current?.focus();
+        }
+    },[ref])
+
+    const logSubmit=async(e)=>{
+        e.preventDefault();
+
+        const user={    
+            logUsername,
+            logPass
+        }
+
+        await axios.post(`http://localhost:3001/${login}`,user)
+        .then((res)=>{
+            setCookies("access_token",res.data.token,{path:"/",domain:"localhost"});
+            window.localStorage.setItem("userID",res.data.userId);
+            navigate("/");
+        })
+        .catch((err)=>{
+            console.error(err);
+            alert(err);
+        })
+    };
+
     const signed=async(res)=>{
-        // console.log(res.credential);
         const decoded=await jwt_decode(res.credential);
-        // console.log("Login "+ decoded);
         const user={
             _id:decoded.sub,
             email:decoded.email,
@@ -28,17 +57,13 @@ export const Login=()=>{
             profilePic:decoded.picture
         }
 
-        // console.log(user);
-
         await axios.post(`http://localhost:3001/${googleApi}`,user)
         .then((res)=>{
-            
+
             setCookies("access_token", res.data.token, { path: "/", domain: "localhost" })
             window.localStorage.setItem("userID", res.data.userId);
-            navigate("/");
-            
-            // const username=res.data.username;
-            // const picture=res.data.profilePic;
+            navigate("/");  
+
         })
         .catch((err)=>{
             alert(err);
@@ -50,13 +75,27 @@ export const Login=()=>{
             clientId={client_Id}
         >
             <h1 className="fw-bold">Log In</h1>
-            <form>
+            <form onSubmit={logSubmit}>
                 <br/>
-                <input type="text" className="form-control" placeholder="Username"/>
+                <input 
+                    type="text" className="form-control" 
+                    placeholder="Username"
+                    onChange={(e)=>setLogUsername(e.target.value)} 
+                    ref={ref}
+                />
+                
                 <br/>
-                <input type="password" className="form-control" placeholder="Password"/>
+
+                <input 
+                    type="password" className="form-control" 
+                    placeholder="Password"
+                    onChange={(e)=>setLogPass(e.target.value)}
+                />
+
                 <br/>
-                <button className="btn btn-primary fw-bold">Login</button>
+
+                <button className="btn btn-primary fw-bold" type="submit">Login</button>
+
                 <br/>
                 <br/>
                 <hr/>
@@ -110,7 +149,8 @@ export const SignUP=()=>{
         await axios.post(`http://localhost:3001/${normalApi}`,{logUsername,logPass})
         .then((res)=>{
             if(res.data.success===true){
-                alert(res.data.message);
+                alert(res.data.message+" Login Now !! Redirecting... ");
+                navigate("/login");
             }else{
                 alert(res.data.message);
             }
@@ -122,9 +162,7 @@ export const SignUP=()=>{
     }
 
     const signed=async(res)=>{
-        // console.log(res.credential);
         const decoded=await jwt_decode(res.credential);
-        // console.log("Login "+ decoded);
         const user={
             _id:decoded.sub,
             email:decoded.email,
@@ -132,17 +170,12 @@ export const SignUP=()=>{
             profilePic:decoded.picture
         }
 
-        // console.log(user);
-
         await axios.post(`http://localhost:3001/${googleApi}`,user)
         .then((res)=>{
 
             setCookies("access_token", res.data.token, { path: "/", domain: "localhost" })
             window.localStorage.setItem("userID", res.data.userId);
             navigate("/");
-            
-            // const username=res.data.username;
-            // const picture=res.data.profilePic;
         })
         .catch((err)=>{
             alert(err);
