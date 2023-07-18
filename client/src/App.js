@@ -5,6 +5,7 @@ import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import { Login , SignUP } from "./pages/auth/auth";
 import { Home } from "./pages/home/home";
 import { Locate } from './pages/locate/locate';
+import { News } from "./components/AdiNews";
 
 // components
 import { Navbar } from "./components/navbar";
@@ -21,6 +22,7 @@ function App() {
               <Route path='/login' element={<Login/>}/>
               <Route path='/signup' element={<SignUP/>}/>
               <Route path='/locate' element={<Locate/>}/>
+              <Route path="/news" element={<News/>}/>
 
             </Routes>
 
