@@ -1,21 +1,21 @@
 import "./home.css";
 
 export const Home=()=>{
-    {/* className="page-body"*/}
     return(<div className="home-screen">
         <div className="home-post-area">
             <h1>POSTs</h1>
-
         </div>
 
         <div className="home-share-area">
-            <h3 style={{color:"white"}}>SHARE</h3>
+            <h3 style={{color:"white",marginTop:"1vh"}}>SHARE</h3>
             <hr/>
-            <form>
+            <form className="form-adjust form-control">
                 <h4 style={{color:"white"}}>Title</h4>
-                <input type="text" placeholder="" className="home-inputs"/>
-                <h4 style={{color:"white"}}></h4>
-                <input type="text" placeholder="" className="home-inputs"/>
+                <input type="text" placeholder="Post title" className="post-title home-inputs"/>
+                <h4 style={{color:"white"}}>Description</h4>
+                <input type="text" placeholder="Post Description" className="post-description home-inputs"/>
+                <center><input type="file" className="file-button btn btn-dark" style={{display:"block",marginBottom:"1vh"}}/></center>
+                <button type="submit" className="btn btn-info">Submit</button>
             </form>
         </div>
         

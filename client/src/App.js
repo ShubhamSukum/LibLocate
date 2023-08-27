@@ -1,5 +1,7 @@
 import './App.css';
-import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
+import {BrowserRouter as Router,Routes,Route,Navigate} from "react-router-dom";
+import {useState,useEffect} from "react";
+import Cookies from "js-cookie";
 
 // pages
 import { Login , SignUP } from "./pages/auth/auth";
@@ -17,10 +19,10 @@ function App() {
 
             <Routes>
 
-              <Route path='/' element={<Home/>}/>
+              <Route path='/' element={<ProtectedRoute> <Home/> </ProtectedRoute>}/>
               <Route path='/login' element={<Login/>}/>
               <Route path='/signup' element={<SignUP/>}/>
-              <Route path='/locate' element={<Locate/>}/>
+              <Route path='/locate' element={<ProtectedRoute> <Locate/> </ProtectedRoute>}/>
 
             </Routes>
 
@@ -28,5 +30,21 @@ function App() {
     </div>
   );
 }
+
+const ProtectedRoute = ({ children, ...rest }) => {
+  const [isUnauthorized, setIsUnauthorized] = useState(false);
+
+  useEffect(() => {
+      if (!Cookies.get("access_token")) {
+        setIsUnauthorized(true);
+      }
+  }, []);
+
+  if (isUnauthorized) {
+    return <Navigate to="/login" />
+  }
+
+  return children;
+};
 
 export default App;
