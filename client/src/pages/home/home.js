@@ -15,7 +15,7 @@ export const Home=()=>{
                 <h4 style={{color:"white"}}>Description</h4>
                 <input type="text" placeholder="Post Description" className="post-description home-inputs"/>
                 <center><input type="file" className="file-button btn btn-dark" style={{display:"block",marginBottom:"1vh"}}/></center>
-                <button type="submit" className="btn btn-info">Submit</button>
+                <button type="submit" className="btn btn-light">Submit</button>
             </form>
         </div>
         

@@ -24,7 +24,7 @@ export const Navbar=()=>{
 
     return(<>
         <center>
-            <nav className="flexy navbar">
+            <nav className="flexy navbar" style={{marginTop:"1vh"}}>
                 <Link to="/" className="navbar-brand fw-bold whity">Home</Link>
                 <Link to="/locate" className="navbar-brand fw-bold whity">Locate</Link>
 
