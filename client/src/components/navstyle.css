@@ -1,14 +1,22 @@
 nav {
-  width: 95vw;
+  width: 100vw;
   height: 10vh;
-  background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%);
+  /* background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%); */
+  border:2px white solid;
   border-radius: 5px;
   position: relative;
+}
+
+.flexy{
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
 }
 
+.whity{
+  color: white;
+}
 
 
 
