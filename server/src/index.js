@@ -5,6 +5,7 @@ import cors from "cors";
 
 // files
 import {userAuthRouter} from "./routes/userAuthRouter.js";
+import {postRouter} from "./routes/post.js";
 
 // Dotenv
 import dotenv from "dotenv";
@@ -30,6 +31,7 @@ app.use(cors({
 
 // APIs
 app.use(meNahiBataunga,userAuthRouter);
+app.use(meNahiBataunga,postRouter);
 
 // MongoDb Connection 
 mongoose.connect(link_DB,{

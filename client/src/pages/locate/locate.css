@@ -43,13 +43,27 @@
   border: 2px solid white;
 }
 
-.right-down{
-  border: 2px solid white;
+.right-down-section{
+  /* border: 2px solid white; */
   height: 70vh;
   width: 34vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
+.right-wall{
+  border: 2px solid black;
+  height: 70vh;
+  width: 10vh;
+}
 
+.right-table{
+  border: 2px solid blue;
+  height: 70vh;
+  width: 28vw;
+}
 
 
 

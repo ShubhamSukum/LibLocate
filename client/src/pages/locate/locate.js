@@ -29,10 +29,10 @@ export const Locate=()=>{
             <div className="section">
 
                 <div className="right-up">
-                    
+
                 </div>
 
-                <div className="right-down">
+                <div className="right-down-section">
 
                     <div className="right-table">
 
