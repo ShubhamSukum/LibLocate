@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import multer from "multer"; 
 
 const app = express();
 
@@ -15,70 +14,13 @@ postRouter.get("/getPost", async (req, res) => {
     try {
       const postData = await postModel.find({}); // Exclude image data for now
       return res.status(200).json({ success: true, data: postData });
-    } catch (err) {
+    } 
+    catch (err) {
       console.error(err);
       return res.status(500).json({ success: false, message: "Internal server error" });
     }
 });
   
-
-// postRouter.get("/getPost", async (req, res) => {
-//   try {
-//     const postData = await postModel.find({});
-//     return res.send(postData);
-//   } catch (err) {
-//     console.error(err);
-//   }
-// });
-
-// Define the storage and upload middleware
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
-
-postRouter.post('/createPost', upload.single('image'), async (req, res) => {
-  try {
-      const newPost = new postModel({
-          title: req.body.title,
-          description: req.body.description,
-          image: {
-              data: req.file.buffer,
-              contentType: req.file.mimetype
-          },
-          account: req.body.account,
-      });
-
-      await newPost.save();
-      res.json({ success: true, message: 'Image uploaded and post saved successfully.' });
-
-  } catch (error) {
-      console.error('Error uploading image:', error);
-      res.status(500).json({ success: false, message: 'Error uploading image.' });
-  }
-});
-
-
-// postRouter.post('/createPost', upload.single('image'), async (req, res) => {
-//     try {
-//         const newPost = new postModel({
-//             title: req.body.title,
-//             description: req.body.description,
-//             image: {
-//                 data: req.file.buffer,
-//                 contentType: req.file.mimetype
-//             },
-//             account: req.body.account,
-//         });
-
-//         await newPost.save();
-//         res.json({ success: true, message: 'Image uploaded and post saved successfully.' });
-
-//     } catch (error) {
-//         console.error('Error uploading image:', error);
-//         res.status(500).json({ success: false, message: 'Error uploading image.' });
-//     }
-// });
-
-
 export { postRouter };
 
 
@@ -93,7 +35,18 @@ export { postRouter };
 
 
 
+// postRouter.get("/getPost", async (req, res) => {
+// //   try {
+// //     const postData = await postModel.find({});
+// //     return res.send(postData);
+// //   } catch (err) {
+// //     console.error(err);
+// //   }
+// // });
 
+// // Define the storage and upload middleware
+// const storage = multer.memoryStorage();
+// const upload = multer({ storage: storage });
 
 
 
