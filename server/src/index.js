@@ -2,6 +2,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import bodyParser from "body-parser";
 
 // files
 import {userAuthRouter} from "./routes/userAuthRouter.js";
@@ -18,10 +19,16 @@ const PORT=process.env.PORT;
 const link_DB=process.env.link_DB;
 const meNahiBataunga=process.env.apiStart;
 
+// app.use(express.json());
+// // app.use(cors());
+
+
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.json());
-// app.use(cors());
 
 app.use(cors());
+
 
 // APIs
 app.use(meNahiBataunga,userAuthRouter);

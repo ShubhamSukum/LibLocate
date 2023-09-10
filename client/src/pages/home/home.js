@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import axios from 'axios';
 import Filebase from "react-file-base64";
 
@@ -12,6 +12,22 @@ export const Home = () => {
         image:"",
         account:""
     });
+
+    const [D,setDisplay]=useState([]);
+
+    useEffect(()=>{
+        console.log("useEffect");
+        axios.get("http://localhost:3001/pict0/getPost")
+        .then((res)=>{
+            setDisplay(res.data.data);
+            // console.log(res.data.data)
+            
+        })
+        .catch((err)=>{
+            console.error(err);
+        })
+        
+    },[])
 
     const handleSubmit=async(e)=>{
         e.preventDefault();
@@ -28,8 +44,8 @@ export const Home = () => {
     return (
         <div className="home-screen">
             <div className="home-post-area">
-                {/* {
-                    postData.map((data, index) => (
+                {
+                    D.map((data, index) => (
                         <div key={index}>
                             <img src={data.image} alt={data.title} height={"100vh"} width={"100vh"}/>
                             <p>{data.title}</p>
@@ -37,7 +53,7 @@ export const Home = () => {
                             <p>{data.account}</p>
                         </div>
                     ))
-                } */}
+                }
             </div>
 
             <div className="home-share-area">
@@ -58,7 +74,6 @@ export const Home = () => {
                             <Filebase
                                 type="file"
                                 multiple={false}
-                                accept="image/*"
                                 onDone={({base64})=>setPostData({...postData,image:base64})}
                             />
                         </div>
@@ -71,75 +86,3 @@ export const Home = () => {
         </div>
     );
 };
-
-
-
-
-// const arrayBufferToBase64 = (buffer, mimeType) => {
-    //     console.log(buffer)
-    //     let binary = '';
-    //     let bytes = new Uint8Array(buffer.data);
-    //     let len = bytes.byteLength;
-    //     for (let i = 0; i < len; i++) {
-    //     binary += String.fromCharCode(bytes[i]);
-    //     }   
-    //     return binary.toString("base64")
-    // }
-
-    // useEffect(() => {
-    //     axios.get("http://localhost:3001/pict0/getPost").
-    //         then((res) => {
-    //             setPostData(
-    //                 res.data.data.map(val => {
-    //                     console.log(val)
-    //                     return {
-    //                         ...val,
-    //                         image: arrayBufferToBase64(res.data.data[0].image.data, res.data.data[0].image.contentType)
-    //                     }
-    //                 }),
-    //             );
-    //             console.log(postData[0].image)
-    //             // console.log(arrayBufferToBase64(res.data.data[0].image.data))
-    //         }).catch((err) => {
-    //             console.error(err);
-    //         });
-    // }, []);
-
-    // const handleFileChange = (e) => {
-    //     const file = e.target.files[0];
-
-    //     if (file) {
-    //         const reader = new FileReader();
-    //         reader.onload = (event) => {
-    //             setImage(event.target.result);
-    //         };
-    //         reader.readAsDataURL(file);
-    //     }
-    // };
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    
-    //     const formData = new FormData();
-    //     formData.append('title', title);
-    //     formData.append('description', description);
-    
-    //     if (image) {
-    //         const imageBlob = new Blob([image], { type: 'image/jpeg' }); // Adjust the MIME type accordingly
-    //         formData.append('image', imageBlob);
-    //     }
-    
-    //     formData.append('account', account);
-    
-    //     try {
-    //         await axios.post('http://localhost:3001/pict0/createPost', formData, {
-    //             headers: {
-    //                 'Content-Type': 'multipart/form-data'
-    //             }
-    //         });
-    //         console.log('Post created successfully');
-    //         // Reset form fields if needed
-    //     } catch (error) {
-    //         console.error('Error creating post:', error);
-    //     }
-    // };
