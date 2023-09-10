@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import Filebase from "react-file-base64";
+
 import "./home.css";
 
 export const Home = () => {
@@ -10,12 +12,23 @@ export const Home = () => {
         image:"",
         account:""
     });
+
+    const handleSubmit=async(e)=>{
+        e.preventDefault();
+        console.log({...postData,account})
+        await axios.post("http://localhost:3001/pict0/createPost",{...postData,account}).
+        then((res)=>{
+            console.log(res.data);
+        }).catch((err)=>{
+            console.error(err);
+        })
+    }
     
     
     return (
         <div className="home-screen">
             <div className="home-post-area">
-                {
+                {/* {
                     postData.map((data, index) => (
                         <div key={index}>
                             <img src={data.image} alt={data.title} height={"100vh"} width={"100vh"}/>
@@ -24,28 +37,35 @@ export const Home = () => {
                             <p>{data.account}</p>
                         </div>
                     ))
-                }
+                } */}
             </div>
 
             <div className="home-share-area">
                 <h3 style={{ color: "white", marginTop: "1vh" }}>SHARE</h3>
                 <hr />
                 <form className="form-adjust form-control" onSubmit={handleSubmit}>
+
                     <h4 style={{ color: "white" }}>Title</h4>
                     <input type="text" placeholder="Post title" className="post-title home-inputs"
-                        value={title} onChange={(e) => setTitle(e.target.value)} />
+                     onChange={(e) => setPostData({...postData,title:e.target.value})} />
 
                     <h4 style={{ color: "white" }}>Description</h4>
                     <textarea  type="text" placeholder="Post Description" className="post-description home-inputs"
-                        value={description} onChange={(e) => setDescription(e.target.value)} />
+                     onChange={(e) => setPostData({...postData,description:e.target.value})} />
 
                     <center>
-                        <input type="file" className="file-button btn btn-dark"
-                            style={{ display: "block", marginBottom: "1vh" }}
-                            accept="image/*" onChange={handleFileChange} />
+                        <div className='file-button btn btn-dark'>
+                            <Filebase
+                                type="file"
+                                multiple={false}
+                                accept="image/*"
+                                onDone={({base64})=>setPostData({...postData,image:base64})}
+                            />
+                        </div>
                     </center>
 
-                    <button type="submit" className="btn btn-light">Submit</button>
+                    <button type="submit" className="btn btn-light" >Submit</button>
+
                 </form>
             </div>
         </div>
