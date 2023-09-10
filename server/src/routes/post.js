@@ -20,6 +20,18 @@ postRouter.get("/getPost", async (req, res) => {
       return res.status(500).json({ success: false, message: "Internal server error" });
     }
 });
+
+postRouter.post("/createPost",async(req,res)=>{
+    const data=req.body;
+    const Post=new postModel({...data});
+
+    try{
+      await Post.save();
+      res.json({message:"Post created"});
+    }catch(err){
+      console.error(err);
+    }
+})
   
 export { postRouter };
 

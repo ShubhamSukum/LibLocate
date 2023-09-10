@@ -10,8 +10,7 @@ const postSchema=new mongoose.Schema({
         required:true
     },
     image:{
-        data: Buffer, // Store the image binary data
-        contentType: String, // MIME type of the image
+        type:String
     },
     account:{
         type:String,
@@ -19,4 +18,4 @@ const postSchema=new mongoose.Schema({
     }
 },{versionKey:false,timestamps:true});
 
-export const postModel= mongoose.model("posts",postSchema)
+export const postModel= mongoose.model("posts",postSchema);
