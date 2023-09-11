@@ -15,8 +15,7 @@ export const Home = () => {
 
     const [D,setDisplay]=useState([]);
 
-    useEffect(()=>{
-        console.log("useEffect");
+    const autoFetch=()=>{
         axios.get("http://localhost:3001/pict0/getPost")
         .then((res)=>{
             setDisplay(res.data.data);
@@ -26,7 +25,12 @@ export const Home = () => {
         .catch((err)=>{
             console.error(err);
         })
+    }
+
+    useEffect(()=>{
+        console.log("useEffect");
         
+        autoFetch();
     },[])
 
     const handleSubmit=async(e)=>{
@@ -38,6 +42,10 @@ export const Home = () => {
         }).catch((err)=>{
             console.error(err);
         })
+
+        alert("done");
+
+        autoFetch();
     }
     
     

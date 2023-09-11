@@ -7,6 +7,11 @@
     margin-right: 2.5vw;
 }
 
+/* removeing scrollbar = making it invisible*/
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
 .home-screen{
     display: flex;
     margin-top: 1.5vh;
@@ -31,6 +36,10 @@
     height: 100;
     width: 70.5vw;
     border: white 2px solid;
+
+    /* scroll-bar thing */
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .home-share-area{
@@ -57,3 +66,6 @@
     background: none;
     border: none;
 }
+
+/*  */
+
