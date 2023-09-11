@@ -1,4 +1,5 @@
 import React, { useState ,useEffect} from 'react';
+import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import Filebase from "react-file-base64";
 
@@ -13,6 +14,8 @@ export const Home = () => {
         account:""
     });
 
+    const Navigate=useNavigate();
+
     const [D,setDisplay]=useState([]);
 
     const autoFetch=()=>{
@@ -20,7 +23,6 @@ export const Home = () => {
         .then((res)=>{
             setDisplay(res.data.data);
             // console.log(res.data.data)
-            
         })
         .catch((err)=>{
             console.error(err);
@@ -54,11 +56,16 @@ export const Home = () => {
             <div className="post-adjust home-post-area">
                 {
                     D.map((data, index) => (
-                        <div key={index} className='posts' onClick={()=>{console.log(data._id)}}>
-                            <img src={data.image} alt={data.title} height={"50%"} width={"70%"}/>
+                        <div key={index} className='posts' 
+                        onClick={()=>{
+                            return Navigate("/post/"+ data._id);
+                        }}>
+                            <img src={data.image} alt={data.title} height={"50%"} width={"70%"} style={{marginTop:"1vh"}}/>
+                            <br/>
+                            <br/>
                             <h4 style={{ color: "white" }}>{data.title}</h4>
                             <h5 style={{ color: "white" }}>{data.description}</h5>
-                            <p>{data._id}</p>
+                            {/* <p>{data._id}</p> */}
                         </div>
                     ))
                 }

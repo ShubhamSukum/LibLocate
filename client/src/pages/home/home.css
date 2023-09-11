@@ -89,5 +89,14 @@
     border: none;
 }
 
-/*  */
+/* click-post */
 
+.click-post{
+    border: 2px solid white;
+    margin-top: 5vh;
+    border-radius: 15px;
+    height: 70vh;
+    width: 50vw;
+    background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%);
+
+}
