@@ -51,14 +51,14 @@ export const Home = () => {
     
     return (
         <div className="home-screen">
-            <div className="home-post-area">
+            <div className="post-adjust home-post-area">
                 {
                     D.map((data, index) => (
-                        <div key={index}>
-                            <img src={data.image} alt={data.title} height={"100vh"} width={"100vh"}/>
-                            <p>{data.title}</p>
-                            <p>{data.description}</p>
-                            <p>{data.account}</p>
+                        <div key={index} className='posts' onClick={()=>{console.log(data._id)}}>
+                            <img src={data.image} alt={data.title} height={"50%"} width={"70%"}/>
+                            <h4 style={{ color: "white" }}>{data.title}</h4>
+                            <h5 style={{ color: "white" }}>{data.description}</h5>
+                            <p>{data._id}</p>
                         </div>
                     ))
                 }
