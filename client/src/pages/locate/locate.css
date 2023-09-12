@@ -115,6 +115,7 @@
 .Front-Computer-Area{
   position: relative;
   border:white solid 2px;
+  background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%);
   width: 60vw;
   height:65vh;
 
@@ -176,6 +177,16 @@
   width: 10vh;
 }
 
+/* In your CSS file */
+.green-button {
+  background: rgb(149, 227, 149);
+  color: white;
+}
+
+.white-button {
+  background: white;
+  color: black;
+}
 
 
 

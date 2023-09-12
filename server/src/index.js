@@ -8,6 +8,9 @@ import bodyParser from "body-parser";
 import {userAuthRouter} from "./routes/userAuthRouter.js";
 import {postRouter} from "./routes/post.js";
 
+// locate
+import {frontCompRouter} from "./routes/locateRoute/FrontComputers.js"
+
 // Dotenv
 import dotenv from "dotenv";
 dotenv.config();
@@ -33,6 +36,8 @@ app.use(cors());
 // APIs
 app.use(meNahiBataunga,userAuthRouter);
 app.use(meNahiBataunga,postRouter);
+
+app.use(meNahiBataunga,frontCompRouter);
 
 // MongoDb Connection 
 mongoose.connect(link_DB,{
