@@ -60,7 +60,7 @@
 .posts{
     /* background-color: white; */
     background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%);
-    border-radius: 25px;
+    border-radius: 5px;
     border: solid white 2px;
     padding: 1vh;
     margin:2vh;
@@ -92,11 +92,18 @@
 /* click-post */
 
 .click-post{
+    position: relative; 
     border: 2px solid white;
     margin-top: 5vh;
     border-radius: 15px;
     height: 70vh;
     width: 50vw;
     background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%);
+}
 
+.lefty{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 1vh;
 }

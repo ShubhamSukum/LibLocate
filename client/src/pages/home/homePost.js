@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useParams,Link, matchRoutes} from "react-router-dom";
 import { useState,useEffect } from "react";
 import axios from "axios";
 
@@ -23,7 +23,11 @@ export const HomePost=()=>{
     return(<>
     <center>
         <div className="click-post">
-            <h1>{post.title}</h1>
+            <div>
+                <Link to={"/"} className="btn btn-light lefty">Back to ShareZone</Link>
+                <h1>{post.title}</h1>
+            </div>
+            
             <img src={post.image} alt={post.title + "image"} height={"60%"}/>
             <h3>{post.description}</h3>
         </div>

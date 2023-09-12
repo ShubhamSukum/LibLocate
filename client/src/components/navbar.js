@@ -5,9 +5,9 @@ import {useCookies} from "react-cookie";
 
 export const Navbar=()=>{
     const [cookies, , removeCookie] = useCookies(["access_token"]);
-    const navigate = useNavigate();
     const [ourCookie, setOurCookie] = useState(false);
-
+    const navigate = useNavigate();
+    
     useEffect(() => {
         if (cookies["access_token"]) {
           setOurCookie(true);
@@ -25,9 +25,9 @@ export const Navbar=()=>{
     return(<>
         <center>
             <nav className="flexy navbar" style={{marginTop:"1vh"}}>
-                <Link to="/" className="navbar-brand fw-bold whity">Home</Link>
+                <Link to="/" className="navbar-brand fw-bold whity">ShareZone</Link>
                 <Link to="/locate" className="navbar-brand fw-bold whity">Locate</Link>
-
+                
                 {
                     !ourCookie?
                         (<>

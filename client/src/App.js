@@ -9,6 +9,18 @@ import { Home } from "./pages/home/home";
 import { Locate } from './pages/locate/locate';
 import { HomePost } from "./pages/home/homePost";
 
+// Locate pages
+
+// Boxes
+import {Boxes} from "./pages/locate/boxes/boxes";
+import {BoxesBack} from "./pages/locate/boxes/boxesBack";
+import {FrontComputers} from "./pages/locate/boxes/frontComputers";
+
+// Tables
+import {NonElectric} from "./pages/locate/tables/NonElectric";
+import {BackWall} from "./pages/locate/tables/backWall";
+import {RightWall} from "./pages/locate/tables/rightWall";
+
 // components
 import { Navbar } from "./components/navbar";
 
@@ -25,6 +37,18 @@ function App() {
               <Route path='/signup' element={<SignUP/>}/>
               <Route path='/locate' element={<ProtectedRoute> <Locate/> </ProtectedRoute>}/>
               <Route path='/post/:postId' element={<ProtectedRoute> <HomePost/> </ProtectedRoute>}/>
+
+              {/* Boxes */}
+              <Route path='/boxes/Boxes' element={<ProtectedRoute> <Boxes/> </ProtectedRoute>}/>
+              <Route path='/boxes/BoxesBack' element={<ProtectedRoute> <BoxesBack/> </ProtectedRoute>}/>
+              <Route path='/boxes/FrontComputers' element={<ProtectedRoute> <FrontComputers/> </ProtectedRoute>}/>
+              {/* Boxes */}
+
+              {/* Tables */}
+              <Route path='/tables/NonElectric' element={<ProtectedRoute> <NonElectric/> </ProtectedRoute>}/>
+              <Route path='/tables/BackWall' element={<ProtectedRoute> <BackWall/> </ProtectedRoute>}/>
+              <Route path='/tables/RightWall' element={<ProtectedRoute> <RightWall/> </ProtectedRoute>}/>
+              {/* Tables */}
 
             </Routes>
 
