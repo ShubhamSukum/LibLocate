@@ -139,8 +139,6 @@
   margin: 0.5vh;
 }
 
-
-
 .PC{
   height:12vh;
   width:8vw;
@@ -152,6 +150,10 @@
 
 .PCies{
   border: 2px solid white;
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+
   height: 100%;
   width: 10vw;
 
@@ -188,6 +190,42 @@
   background: white;
   color: black;
 }
+
+/* boxex-main */
+
+.boxex-center{
+  width: 100vw;
+  /* border: solid 2px white; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.boxex-main{
+  height: 10vh;
+  margin: 2vh;
+  border-radius: 8px;
+  background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%);
+}
+
+.boxex-buty{
+  height:3.8vh;
+  width: 3.8vh;
+  margin:0.5vh;
+
+  border: none;
+  border-radius: 5px;
+}
+
+.boxex-row-up{
+  height: 5vh;
+}
+
+
+/* boxex-main */
+
+
 
 
 
