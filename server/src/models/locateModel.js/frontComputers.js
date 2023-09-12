@@ -1,11 +1,14 @@
 import mongoose from "mongoose";
 
 const FrontSchema=new mongoose.Schema({
-    computers: {
-        type: [Number]
+    area:{
+        type:String,
     },
-    wall:{
-        type:[Number]
+    state:{
+        type:Number,
+    },
+    User:{
+        type:String
     }
 });
 

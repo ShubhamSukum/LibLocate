@@ -175,6 +175,7 @@
 .B{
   height: 10vh;
   width: 10vh;
+  font-size: 6vh;
 }
 
 /* In your CSS file */

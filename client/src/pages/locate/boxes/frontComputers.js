@@ -5,19 +5,31 @@ import "../locate.css";
 
 export const FrontComputers = () => {
   const [data, setData] = useState([]);
-  const color1 = "white";
+  const [wall,SetWall]=useState([]);
 
   useEffect(() => {
-    console.log("frontComputer");
+    // console.log("frontComputer");
     axios
       .get("http://localhost:3001/pict0/frontComputers")
       .then((res) => {
-        setData(res.data[0]);
-        console.log(res.data[0]);
+        setData(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
+
+      axios
+      .get("http://localhost:3001/pict0/frontWall")
+      .then((res) => {
+        SetWall(res.data);
+        // console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+
   }, []);
 
   return (
@@ -40,11 +52,10 @@ export const FrontComputers = () => {
 
       <div className="Front-Computer-Area">
         <div className="PCies">
-          {data.computers &&
-            data.computers.map((val, index) => (
+          {data.map((val, index) => (
               <button
-                className={`PC ${val === 1 ? "green-button" : "white-button"}`}
-                key={index}
+                className={`PC ${val.state === 1 ? "green-button" : "white-button"}`}
+                key={index} title={val.user}
               >
                 🖥️
               </button>
@@ -52,10 +63,8 @@ export const FrontComputers = () => {
         </div>
 
         <div className="PCies-wall">
-          {data.wall &&
-            data.wall.map((val, index) => (
-              <button className={`B buty ${val === 1 ? "green-button" : "white-button"}`}  key={index}></button>
-            //   "B buty " 
+          {wall.map((val, index) => (
+              <button className={`B buty ${val.state === 1 ? "green-button" : "white-button"}`}  key={index}>🪑</button>
             ))}
         </div>
       </div>
