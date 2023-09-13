@@ -12,7 +12,6 @@ export const Boxes=()=>{
                 width: "80vw",
                 height: "8vh",
                 marginBottom: "2vh",
-                // border:"1px solid white"
                 }}
             >
                 <Link to={"/locate"} className="btn btn-light lefty">
@@ -53,7 +52,7 @@ export const Boxes=()=>{
                 </div>
             </div>  
 
-            <div className="boxex-main">
+            {/* <div className="boxex-main">
                 <div className="boxex-row-up">
                     <button className="boxex-buty">🪑</button>
                     <button className="boxex-buty">🪑</button>
@@ -78,9 +77,9 @@ export const Boxes=()=>{
                     <button className="boxex-buty">🪑</button>
                     <button className="boxex-buty">🪑</button>
                 </div>
-            </div>
+            </div> */}
 
-            <div className="boxex-main">
+            {/* <div className="boxex-main">
                 <div className="boxex-row-up">
                     <button className="boxex-buty">🪑</button>
                     <button className="boxex-buty">🪑</button>
@@ -105,9 +104,9 @@ export const Boxes=()=>{
                     <button className="boxex-buty">🪑</button>
                     <button className="boxex-buty">🪑</button>
                 </div>
-            </div>
+            </div> */}
 
-            <div className="boxex-main">
+            {/* <div className="boxex-main">
                 <div className="boxex-row-up">
                     <button className="boxex-buty">🪑</button>
                     <button className="boxex-buty">🪑</button>
@@ -132,9 +131,9 @@ export const Boxes=()=>{
                     <button className="boxex-buty">🪑</button>
                     <button className="boxex-buty">🪑</button>
                 </div>
-            </div>
+            </div> */}
 
-            <div className="boxex-main">
+            {/* <div className="boxex-main">
                 <div className="boxex-row-up">
                     <button className="boxex-buty">🪑</button>
                     <button className="boxex-buty">🪑</button>
@@ -159,10 +158,10 @@ export const Boxes=()=>{
                     <button className="boxex-buty">🪑</button>
                     <button className="boxex-buty">🪑</button>
                 </div>
-            </div>
+            </div> */}
 
             </div>
-        </div>
+        </div> 
         </div>
     </>)
 }

@@ -10,6 +10,7 @@ import {postRouter} from "./routes/post.js";
 
 // locate
 import {frontCompRouter} from "./routes/locateRoute/FrontComputers.js"
+import {boxesRouter} from "./routes/locateRoute/boxes.js";
 
 // Dotenv
 import dotenv from "dotenv";
@@ -38,6 +39,7 @@ app.use(meNahiBataunga,userAuthRouter);
 app.use(meNahiBataunga,postRouter);
 
 app.use(meNahiBataunga,frontCompRouter);
+app.use(meNahiBataunga,boxesRouter);
 
 // MongoDb Connection 
 mongoose.connect(link_DB,{
