@@ -206,7 +206,7 @@
   height: 10vh;
   margin: 2vh;
   border-radius: 8px;
-  background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%);
+  /* background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%); */
 }
 
 .boxex-buty{
@@ -231,14 +231,23 @@
   height:65vh;
   width:65vw;
   border: 3px solid white;
+  background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%);
+
 }
 
 .upper-wall{
   height:15vh;
-  width:40vw;
+  width:37vw;
+  /* background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%); */
 
   border: 3px solid white;
   margin:7vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  
 }
 
 .lower-wall{
@@ -246,14 +255,29 @@
   right:0;
   bottom:0;
   height:15vh;
-  width:40vw;
+  width:20vw;
   margin:7vh;
 
+  /* background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%); */
 
-  border: 2px solid white;
+  border: 3px solid white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
 }
 
+.back-wall-but{
+  height:8vh;
+  width: 8vh;
+  /* margin:0.5vh; */
 
+  font-size: 4vh;
+
+  border: none;
+  border-radius: 5px;
+}
 
 
 

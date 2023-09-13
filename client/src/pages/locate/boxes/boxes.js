@@ -8,7 +8,7 @@ export const Boxes = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3001/pict0/boxes").then((res) => {
-      console.log(res.data);
+    //   console.log(res.data);
       setData(res.data);
     });
   }, []);
@@ -35,37 +35,52 @@ export const Boxes = () => {
           </div>
           {/* KINDA NAV */}
 
-          {data.map((info, index) => {
-            return info && (
-              <div style={{ border: "2px solid white" }}>
-                <div className="boxex-main">
-                  <div className="boxex-row-up">
-                    <>
-                      {info.right.map((val, ind) => {
-                        return (
-                          <>
-                            <button className="boxex-buty">🪑</button>
-                          </>
-                        );
-                      })}
-                      
-                      <center>
-                        <div style={{ border: "solid 1px white", width: "100%" }}></div>
-                      </center>
+        {data.map((info, index) => {
+        return info && (
+            <div
+            key={index} // Add a unique key prop here
+            style={{
+                border: "2px solid white",
+                background: "linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%)"
+            }}
+            >
+            <div className="boxex-main">
+                <div className="boxex-row-up">
+                <>
+                    {info.right.map((val, ind) => {
+                    return (
+                        <button
+                        className={`boxex-buty ${val.state === 1 ? "green-button" : "white-button"}`}
+                        key={ind}
+                        title={val.user}
+                        >
+                        🪑
+                        </button>
+                    );
+                    })}
 
-                      {info.left.map((val, ind) => {
-                        return (
-                          <>
-                            <button className="boxex-buty">🪑</button>
-                          </>
-                        );
-                      })}
-                    </>
-                  </div>
+                    <center>
+                    <div style={{ border: "solid 1px white", width: "100%" }}></div>
+                    </center>
+
+                    {info.left.map((val, ind) => {
+                    return (
+                        <button
+                        className={`boxex-buty ${val.state === 1 ? "green-button" : "white-button"}`}
+                        key={ind} // Add a unique key prop here
+                        title={val.user}
+                        >
+                        🪑
+                        </button>
+                    );
+                    })}
+                </>
                 </div>
-              </div>
-            );
-          })}
+            </div>
+            </div>
+        );
+        })}
+
         </div>
       </div>
     </>

@@ -21,7 +21,7 @@ export const BackWall=()=>{
                     </Link>
 
                     <h1 style={{ display: "inline-block", color: "white" }} className="fw-bold">
-                        BACK WALL
+                        TABLES BACK WALL
                     </h1>
                 </div>
             </div>
@@ -29,11 +29,18 @@ export const BackWall=()=>{
             <div className="table-back-wall">
 
                 <div className="upper-wall">
-
+                    <button className="back-wall-but">🪑</button>
+                    <button className="back-wall-but">🪑</button>
+                    <button className="back-wall-but">🪑</button>
+                    <button className="back-wall-but">🪑</button>
+                    <button className="back-wall-but">🪑</button>
+                    <button className="back-wall-but">🪑</button>
                 </div>
 
                 <div className="lower-wall">
-
+                    <button className="back-wall-but">🪑</button>
+                    <button className="back-wall-but">🪑</button>
+                    <button className="back-wall-but">🪑</button>
                 </div>
 
             </div>
