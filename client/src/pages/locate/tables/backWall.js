@@ -17,7 +17,7 @@ export const BackWall=()=>{
                     }}
                 >
                     <Link to={"/locate"} className="btn btn-light lefty">
-                    Back to Locate
+                        Back to Locate
                     </Link>
 
                     <h1 style={{ display: "inline-block", color: "white" }} className="fw-bold">
