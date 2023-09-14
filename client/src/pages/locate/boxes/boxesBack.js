@@ -11,10 +11,10 @@ export const BoxesBack=()=>{
 
                 <div className="back-boxes-left-section">
                     <div className="back-boxes-top">
-                    
+
                     </div>
 
-                    <div className="inner-left-section">
+                    {/* <div className="inner-left-section"> */}
                         <div className="back-boxes-left">
 
                         </div>
@@ -22,7 +22,7 @@ export const BoxesBack=()=>{
                         <div className="back-boxes-center">
 
                         </div>
-                    </div>
+                    {/* </div> */}
                 
                 </div>
 
