@@ -5,7 +5,7 @@ export const BoxesBack=()=>{
         <div className="centering" 
         style={{ height: "89vh", width: "100vw"}}>
 
-            <CommonNav/>
+            <CommonNav name="BACK BOXES"/>
             
             <div className="back-boxes">
 

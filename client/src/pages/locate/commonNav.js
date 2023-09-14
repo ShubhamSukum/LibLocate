@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import "./locate.css";
 
-export const CommonNav=()=>{
+export const CommonNav=(props)=>{
     return(<>
         <div className="boxex-center">
             <div
@@ -18,7 +18,7 @@ export const CommonNav=()=>{
                 </Link>
 
                 <h1 style={{ display: "inline-block", color: "white" }} className="fw-bold">
-                    BACK BOXES
+                    {props.name}
                 </h1>
             </div>
         </div>
