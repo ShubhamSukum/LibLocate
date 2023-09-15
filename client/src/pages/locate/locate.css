@@ -451,7 +451,16 @@
   height:90%;
   width:35%;
   border:2px solid white;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns in the first row */
+  grid-auto-rows: auto; /* Automatically adjust row height */
+  justify-content: space-evenly;
+  align-items: center;
+  justify-items: center;
 }
+
+
 
 .Lblue{
   background: rgba(98, 98, 194, 0.4);
@@ -481,8 +490,79 @@
   color: white;
 }
 
+.elec-table{
+  height: 80%;
+  width:65%;
+  border: 2px solid white;
+  border-radius: 5px;
+  position:relative;
+  background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%);
+}
 
+.elec-but{
+  position:absolute;
+  border: none;
+  border-radius: 5px;
+  height: 23%;
+  width: 23%;
+}
 
+.R{
+  right: 0;
+  top:37%;
+}
+
+.L{
+  left:0;
+  top:37%;
+}
+
+.T{
+  top:0;
+  right:37%;
+}
+
+.D{
+  bottom: 0;
+  right:37%;
+}
+
+.middle-box{
+  border-radius: 5px;
+  border: 2px solid white;
+  background-color: white;
+  position: absolute;
+  height:38%;
+  width: 38%;
+  top:32%;
+  right:32%;
+}
+
+.p25{
+  height:50%;
+  width:200%;
+  position: relative;
+  margin-left:100%;
+
+  /* border: 2px solid black; */
+}
+
+.front-row{
+  border: 2px solid white;
+  height: 100%;
+  width: 70%;
+  position: absolute;
+  right: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.fr{
+  height:55%;
+  width:16%;
+}
 
 
 
