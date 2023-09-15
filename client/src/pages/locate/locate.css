@@ -436,10 +436,49 @@
   background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%);
 }
 
-.nonELEC-area{
+.nonELEC-area-out{
   border: 2px solid white;
   height: 100%;
   width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background: linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%);
+}
+
+.nonELEC-area{
+  height:90%;
+  width:35%;
+  border:2px solid white;
+}
+
+.Lblue{
+  background: rgba(98, 98, 194, 0.4);
+}
+
+.Lgreen{
+  background: rgba(79, 205, 98, 0.5)
+}
+
+.nonELEC-area-info{
+  height: 80%;
+  width:15%;
+  border:2px solid black;
+}
+
+.info-up{
+  height: 50%;
+  width:100%;
+  background: rgba(98, 98, 194, 0.4);
+  color: white;
+}
+
+.info-down{
+  height: 50%;
+  width:100%;
+  background: rgba(79, 205, 98, 0.5);
+  color: white;
 }
 
 
