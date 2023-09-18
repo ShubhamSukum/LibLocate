@@ -4,12 +4,26 @@ import { CommonNav } from "../commonNav.js";
 
 export const BoxesBack = () => {
     const [data, setData] = useState([]);
+    const [table,setTable] = useState([]);
 
     useEffect(() => {
         axios.get("http://localhost:3001/pict0/backboxes")
-            .then((res) => {
-                setData(res.data);
-            })
+        .then((res) => {
+            setData(res.data);
+        })
+        .catch((err)=>{
+            console.log(err);
+        });
+
+        axios.get("http://localhost:3001/pict0/backBoxesTables")
+        .then((res)=>{
+            setTable(res.data);
+            console.log(res.data);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+
     }, [])
 
     return (
@@ -50,42 +64,36 @@ export const BoxesBack = () => {
                         </div>
 
                         <div className="back-boxes-center">
+                            {
+                                table.map((data,index)=>{
+                                    return(<>
+                                        <div className="single-table" key={index}>                                           
+                                                <button className={`right1 chair 
+                                                    ${data.right.state === 1 ? "green-button" : "white-button"}`}
+                                                    title={data.right.user}
+                                                >🪑</button>
 
-                            <div className="single-table">
-                                <button className="right1 chair">🪑</button>
-                                <button className="top1 chair">🪑</button>
-                                <button className="left1 chair">🪑</button>
-                                <button className="bottom1 chair">🪑</button>
-                                <div className="center-table"></div>
-                            </div>
+                                                <button className={`top1 chair 
+                                                    ${data.top.state === 1 ? "green-button" : "white-button"}`}
+                                                    title={data.top.user}
+                                                >🪑</button>
 
-                            <div className="single-table">
-                                <button className="right1 chair">🪑</button>
-                                <button className="top1 chair">🪑</button>
-                                <button className="left1 chair">🪑</button>
-                                <button className="bottom1 chair">🪑</button>
-                                <div className="center-table"></div>
-                            </div>
+                                                <button className={`left1 chair 
+                                                    ${data.left.state === 1 ? "green-button" : "white-button"}`}
+                                                    title={data.left.user}
+                                                >🪑</button>
 
-                            <div className="single-table">
-                                <button className="right1 chair">🪑</button>
-                                <button className="top1 chair">🪑</button>
-                                <button className="left1 chair">🪑</button>
-                                <button className="bottom1 chair">🪑</button>
-                                <div className="center-table"></div>
-                            </div>
-
-                            <div className="single-table">
-                                <button className="right1 chair">🪑</button>
-                                <button className="top1 chair">🪑</button>
-                                <button className="left1 chair">🪑</button>
-                                <button className="bottom1 chair">🪑</button>
-                                <div className="center-table"></div>
-                            </div>
-
-                            
+                                                <button className={`bottom1 chair 
+                                                    ${data.bottom.state === 1 ? "green-button" : "white-button"}`}
+                                                    title={data.bottom.user}
+                                                >🪑</button>
+    
+                                            <div className="center-table"></div>
+                                        </div>
+                                    </>)
+                                })
+                            }           
                         </div>
-
                     </div>
 
                     <div className="back-boxes-right-section">
