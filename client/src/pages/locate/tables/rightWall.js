@@ -37,7 +37,6 @@ export const RightWall=()=>{
                                 else return null;
                             })
                         }
-
                     </div>
                     <div className="g IN-wall">
                         {

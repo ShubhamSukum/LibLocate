@@ -15,6 +15,7 @@ import {backBoxesRouter} from "./routes/locateRoute/backBoxes.js";
 import {backBoxesTablesRouter} from "./routes/locateRoute/backBoxesTables.js";
 import {tableWallRouter} from "./routes/tableSection/tableWall.js";
 import {rightWallRouter} from "./routes/tableSection/rightWall.js";
+import {nonElecTableRouter} from "./routes/tableSection/nonElecTable.js"
 
 // Dotenv
 import dotenv from "dotenv";
@@ -47,6 +48,7 @@ app.use(meNahiBataunga,backBoxesTablesRouter);
 // Locate Right Section
 app.use(meNahiBataunga,tableWallRouter);
 app.use(meNahiBataunga,rightWallRouter);
+app.use(meNahiBataunga,nonElecTableRouter);
 
 // MongoDb Connection 
 mongoose.connect(link_DB,{
