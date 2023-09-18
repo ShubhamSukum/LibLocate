@@ -1,6 +1,6 @@
 import express from "express";
 
-import { locateModel } from "../../models/locateModel/frontComputers.js";
+import { locateModel } from "../../models/locateLeftSection/frontComputers.js";
 
 const frontCompRouter = express.Router();
 

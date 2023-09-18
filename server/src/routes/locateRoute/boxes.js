@@ -3,7 +3,7 @@ import express from "express";
 const app=express();
 app.use(express.json());
 
-import {boxesModel} from "../../models/locateModel/boxes.js";
+import {boxesModel} from "../../models/locateLeftSection/boxes.js";
 
 const boxesRouter = express.Router();
 
