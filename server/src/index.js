@@ -12,6 +12,7 @@ import {postRouter} from "./routes/post.js";
 import {frontCompRouter} from "./routes/locateRoute/FrontComputers.js"
 import {boxesRouter} from "./routes/locateRoute/boxes.js";
 import {backBoxesRouter} from "./routes/locateRoute/backBoxes.js"
+import {backBoxesTablesRouter} from "./routes/locateRoute/backBoxesTables.js"
 
 // Dotenv
 import dotenv from "dotenv";
@@ -43,6 +44,7 @@ app.use(meNahiBataunga,postRouter);
 app.use(meNahiBataunga,frontCompRouter);
 app.use(meNahiBataunga,boxesRouter);
 app.use(meNahiBataunga,backBoxesRouter);
+app.use(meNahiBataunga,backBoxesTablesRouter);
 
 // MongoDb Connection 
 mongoose.connect(link_DB,{
