@@ -7,7 +7,7 @@ const backBoxesSchema=new mongoose.Schema({
     state:{
         type:Number,
     },
-    User:{
+    user:{
         type:String
     }
 });

@@ -11,8 +11,10 @@ import {postRouter} from "./routes/post.js";
 // locate
 import {frontCompRouter} from "./routes/locateRoute/FrontComputers.js"
 import {boxesRouter} from "./routes/locateRoute/boxes.js";
-import {backBoxesRouter} from "./routes/locateRoute/backBoxes.js"
-import {backBoxesTablesRouter} from "./routes/locateRoute/backBoxesTables.js"
+import {backBoxesRouter} from "./routes/locateRoute/backBoxes.js";
+import {backBoxesTablesRouter} from "./routes/locateRoute/backBoxesTables.js";
+import {tableWallRouter} from "./routes/tableSection/tableWall.js";
+import {rightWallRouter} from "./routes/tableSection/rightWall.js";
 
 // Dotenv
 import dotenv from "dotenv";
@@ -25,10 +27,6 @@ const PORT=process.env.PORT;
 const link_DB=process.env.link_DB;
 const meNahiBataunga=process.env.apiStart;
 
-// app.use(express.json());
-// // app.use(cors());
-
-
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.json());
@@ -40,11 +38,15 @@ app.use(cors());
 app.use(meNahiBataunga,userAuthRouter);
 app.use(meNahiBataunga,postRouter);
 
-// Locate
+// Locate Left Section
 app.use(meNahiBataunga,frontCompRouter);
 app.use(meNahiBataunga,boxesRouter);
 app.use(meNahiBataunga,backBoxesRouter);
 app.use(meNahiBataunga,backBoxesTablesRouter);
+
+// Locate Right Section
+app.use(meNahiBataunga,tableWallRouter);
+app.use(meNahiBataunga,rightWallRouter);
 
 // MongoDb Connection 
 mongoose.connect(link_DB,{

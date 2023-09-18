@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const FrontSchema=new mongoose.Schema({
+const rightWallSchema=new mongoose.Schema({
     area:{
         type:String,
     },
@@ -12,4 +12,4 @@ const FrontSchema=new mongoose.Schema({
     }
 });
 
-export const locateModel=mongoose.model("frontcomputers",FrontSchema);
+export const rightWallModel=mongoose.model("rightwalls",rightWallSchema);
