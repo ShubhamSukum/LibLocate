@@ -6,6 +6,7 @@ import "../locate.css";
 
 export const NonElectric=()=>{
     const [data,setData]=useState([]);
+    const [wall,setWall]=useState([]);
 
     useEffect(()=>{
         axios.get("http://localhost:3001/pict0/nonElecTable")
@@ -14,7 +15,16 @@ export const NonElectric=()=>{
         })
         .catch((err)=>{
             console.error(err);
+        });
+
+        axios.get("http://localhost:3001/pict0/smallWall")
+        .then((res)=>{
+            setWall(res.data);
+            console.log(res.data);
         })
+        .catch((err)=>{
+            console.error(err);
+        });
     },[]);
 
     return(<>
@@ -112,11 +122,17 @@ export const NonElectric=()=>{
 
                         <div className="p25">
                             <div className="front-row">
-                                <button className="fr buty">🪑</button>
-                                <button className="fr buty">🪑</button>
-                                <button className="fr buty">🪑</button>
-                                <button className="fr buty">🪑</button>
-                                <button className="fr buty">🪑</button>
+                                {
+                                    wall.map((data,index)=>{
+                                        return(
+                                            <button className={`fr buty ${data.state === 1 ? "green-button" : "white-button"}`}
+                                                title={data.user}
+                                                key={index}>
+                                                🪑
+                                            </button>
+                                       ) 
+                                    })
+                                }
                             </div>
                         </div>
                 </div>

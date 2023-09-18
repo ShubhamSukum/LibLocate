@@ -26,13 +26,13 @@ export const RightWall=()=>{
                         {
                             data.map((info,index)=>{
                                 if(info.area==="left"){
-                                    return(<>
+                                    return(
                                         <button 
                                             key={index} 
                                             className={`non-electirc-chairs buty ${info.state === 1 ? "green-button" : "white-button"}`}>
                                             🪑
                                         </button>
-                                    </>)
+                                    )
                                 }
                                 else return null;
                             })
@@ -42,13 +42,13 @@ export const RightWall=()=>{
                         {
                             data.map((info,index)=>{
                                 if(info.area==="middle"){
-                                    return(<>
+                                    return(
                                         <button 
                                             key={index} 
                                             className={`non-electirc-chairs buty ${info.state === 1 ? "green-button" : "white-button"}`}>
                                             🪑
                                         </button>
-                                    </>)
+                                    )
                                 }
                                 else return null;
                             })
@@ -59,13 +59,13 @@ export const RightWall=()=>{
                         {
                             data.map((info,index)=>{
                                 if(info.area==="right"){
-                                    return(<>
+                                    return(
                                         <button 
                                             key={index} 
                                             className={`non-electirc-chairs buty ${info.state === 1 ? "green-button" : "white-button"}`}>
                                             🪑
                                         </button>
-                                    </>)
+                                    )
                                 }
                                 else return null;
                             })
