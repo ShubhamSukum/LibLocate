@@ -21,6 +21,15 @@ const userAuthRouter=express.Router();
 
 userAuthRouter.post("/addGoogleUser",async(req,res)=>{
     const user=req.body;
+    // console.log(user);
+    
+    // {
+    //     _id: '',
+    //     email: '@gmail.com',
+    //     username: 'novone',
+    //     profilePic: ''    
+    // }
+
     const profilePic=user.profilePic;
     const username=user.username;
 
