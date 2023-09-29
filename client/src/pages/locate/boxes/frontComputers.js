@@ -28,9 +28,17 @@ export const FrontComputers = () => {
       .catch((err) => {
         console.log(err);
       });
-
-
   }, []);
+
+  const updateField=async(id)=>{
+        await axios.patch(`http://localhost:3001/pict0/frontComputers/${id}`,{user:localStorage.userID})
+        .then((res)=>{
+          console.log(res.data);
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+  }
 
   return (
     <div className="centering" style={{ height: "80vh", width: "100vw" }}>
@@ -55,7 +63,7 @@ export const FrontComputers = () => {
           {data.map((val, index) => (
               <button
                 className={`PC ${val.state === 1 ? "green-button" : "white-button"}`}
-                key={index} title={val.user}
+                key={index} title={val.user} onClick={()=>{updateField(val._id)}}
               >
                 🖥️
               </button>

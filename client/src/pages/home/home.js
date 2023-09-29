@@ -29,18 +29,16 @@ export const Home = () => {
         })
     }
 
-    useEffect(()=>{
-        console.log("useEffect");
-        
+    useEffect(()=>{        
         autoFetch();
     },[])
 
     const handleSubmit=async(e)=>{
         e.preventDefault();
-        console.log({...postData,account})
+        // console.log({...postData,account})
         await axios.post("http://localhost:3001/pict0/createPost",{...postData,account}).
         then((res)=>{
-            console.log(res.data);
+            // console.log(res.data);
         }).catch((err)=>{
             console.error(err);
         })

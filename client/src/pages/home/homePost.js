@@ -8,11 +8,11 @@ export const HomePost=()=>{
     const params=useParams();
 
     useEffect(()=>{
-        console.log("post useEffect");
+        // console.log("post useEffect");
 
         axios.post("http://localhost:3001/pict0/post",{postId:params.postId})
         .then((res)=>{
-            console.log(res.data);
+            // console.log(res.data);
             setPost(res.data);
         })
         .catch((err)=>{
