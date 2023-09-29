@@ -7,8 +7,8 @@ export const FrontComputers = () => {
   const [data, setData] = useState([]);
   const [wall,SetWall]=useState([]);
 
-  useEffect(() => {
-    // console.log("frontComputer");
+  const autofetch=()=>{
+    // console.log("autofetch");
     axios
       .get("http://localhost:3001/pict0/frontComputers")
       .then((res) => {
@@ -28,12 +28,19 @@ export const FrontComputers = () => {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  useEffect(() => {
+      autofetch()
   }, []);
 
   const updateField=async(id)=>{
         await axios.patch(`http://localhost:3001/pict0/frontComputers/${id}`,{user:localStorage.userID})
         .then((res)=>{
-          console.log(res.data);
+          if(res.data.done) autofetch();
+          else {
+            alert("unauthorized user modifying!!");
+          }
         })
         .catch((err)=>{
           console.log(err);
