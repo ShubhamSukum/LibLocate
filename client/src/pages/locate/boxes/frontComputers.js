@@ -34,7 +34,7 @@ export const FrontComputers = () => {
       autofetch()
   }, []);
 
-  const updateField=async(id)=>{
+  const updateField=async(id)=>{  
         await axios.patch(`http://localhost:3001/pict0/frontComputers/${id}`,{user:localStorage.userID})
         .then((res)=>{
           if(res.data.done) autofetch();
