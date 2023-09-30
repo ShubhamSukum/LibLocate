@@ -6,7 +6,7 @@ import axios from "axios";
 export const RightWall=()=>{
     const [data,setData]=useState([]);
 
-    useEffect(()=>{
+    const autofetch=()=>{
         axios.get("http://localhost:3001/pict0/rightWall")
         .then((res)=>{
             setData(res.data);
@@ -14,7 +14,24 @@ export const RightWall=()=>{
         .catch((err)=>{
             console.error(err);
         })
+    }
+
+    useEffect(()=>{
+        autofetch();
     },[])
+
+    const updateRight=async(id)=>{
+        await axios.patch(`http://localhost:3001/pict0/rightWall/${id}`,{user:localStorage.userID})
+        .then((res)=>{
+        if(res.data.done) autofetch();
+        else {
+            alert("unauthorized user modifying!!");
+        }
+        })
+        .catch((err)=>{
+        console.log(err);
+        })
+    }
 
     return(<>
         <div className="centering" 
@@ -28,8 +45,11 @@ export const RightWall=()=>{
                                 if(info.area==="left"){
                                     return(
                                         <button 
-                                            key={index} 
-                                            className={`non-electirc-chairs buty ${info.state === 1 ? "green-button" : "white-button"}`}>
+                                            key={index}
+                                            className={`non-electirc-chairs buty ${info.state === 1 ? "green-button" : "white-button"}`}
+                                            title={info.user}
+                                            onClick={()=>{updateRight(info._id)}}
+                                        >
                                             🪑
                                         </button>
                                     )
@@ -45,7 +65,10 @@ export const RightWall=()=>{
                                     return(
                                         <button 
                                             key={index} 
-                                            className={`non-electirc-chairs buty ${info.state === 1 ? "green-button" : "white-button"}`}>
+                                            className={`non-electirc-chairs buty ${info.state === 1 ? "green-button" : "white-button"}`}
+                                            title={info.user}
+                                            onClick={()=>{updateRight(info._id)}}
+                                        >
                                             🪑
                                         </button>
                                     )
@@ -62,7 +85,10 @@ export const RightWall=()=>{
                                     return(
                                         <button 
                                             key={index} 
-                                            className={`non-electirc-chairs buty ${info.state === 1 ? "green-button" : "white-button"}`}>
+                                            className={`non-electirc-chairs buty ${info.state === 1 ? "green-button" : "white-button"}`}
+                                            title={info.user}
+                                            onClick={()=>{updateRight(info._id)}}
+                                        >
                                             🪑
                                         </button>
                                     )
