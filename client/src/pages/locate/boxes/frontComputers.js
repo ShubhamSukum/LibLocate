@@ -46,6 +46,20 @@ export const FrontComputers = () => {
           console.log(err);
         })
   }
+  // updateWall
+
+  const updateWall=async(id)=>{  
+    await axios.patch(`http://localhost:3001/pict0/frontWall/${id}`,{user:localStorage.userID})
+    .then((res)=>{
+      if(res.data.done) autofetch();
+      else {
+        alert("unauthorized user modifying!!");
+      }
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+}
 
   return (
     <div className="centering" style={{ height: "80vh", width: "100vw" }}>
@@ -79,7 +93,9 @@ export const FrontComputers = () => {
 
         <div className="PCies-wall">
           {wall.map((val, index) => (
-              <button className={`B buty ${val.state === 1 ? "green-button" : "white-button"}`}  key={index}>🪑</button>
+              <button className={`B buty ${val.state === 1 ? "green-button" : "white-button"}`}  
+              key={index} title={val.user} onClick={()=>{updateWall(val._id)}}>
+                🪑</button>
             ))}
         </div>
       </div>
