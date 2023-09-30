@@ -6,7 +6,7 @@ export const BoxesBack = () => {
     const [data, setData] = useState([]);
     const [table,setTable] = useState([]);
 
-    useEffect(() => {
+    const autofetch=()=>{
         axios.get("http://localhost:3001/pict0/backboxes")
         .then((res) => {
             setData(res.data);
@@ -23,8 +23,24 @@ export const BoxesBack = () => {
         .catch((err)=>{
             console.log(err);
         })
+    }
 
+    useEffect(() => {
+        autofetch();
     }, [])
+
+    const updateField=async(id)=>{  
+        await axios.patch(`http://localhost:3001/pict0/backboxes/${id}`,{user:localStorage.userID})
+        .then((res)=>{
+          if(res.data.done) autofetch();
+          else {
+            alert("unauthorized user modifying!!");
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    }
 
     return (
         <>
@@ -41,7 +57,11 @@ export const BoxesBack = () => {
                             {data && data.map((info, index) => {
                                 if (info.area === "top") {
                                     return (
-                                        <button key={index} className={`ok back-wall-but ${info.state === 1 ? "green-button" : "white-button"}`}>
+                                        <button 
+                                            key={index} 
+                                            className={`ok back-wall-but ${info.state === 1 ? "green-button" : "white-button"}`}
+                                            title={info.user} onClick={()=>{updateField(info._id)}}
+                                        >
                                             🪑
                                         </button>
                                     )
@@ -54,7 +74,11 @@ export const BoxesBack = () => {
                             {data && data.map((info, index) => {
                                 if (info.area === "left") {
                                     return (
-                                        <button key={index} className={`ok1 back-wall-but ${info.state === 1 ? "green-button" : "white-button"}`}>
+                                        <button 
+                                            key={index} 
+                                            className={`ok1 back-wall-but ${info.state === 1 ? "green-button" : "white-button"}`}
+                                            title={info.user} onClick={()=>{updateField(info._id)}}
+                                        >
                                             🪑
                                         </button>
                                     )
@@ -100,7 +124,11 @@ export const BoxesBack = () => {
                         {data && data.map((info, index) => {
                             if (info.area === "right") {
                                 return (
-                                    <button key={index} className={`back-wall-but ${info.state === 1 ? "green-button" : "white-button"}`}>
+                                    <button 
+                                        key={index} 
+                                        className={`back-wall-but ${info.state === 1 ? "green-button" : "white-button"}`}
+                                        title={info.user} onClick={()=>{updateField(info._id)}}
+                                    >
                                         🪑
                                     </button>
                                 )

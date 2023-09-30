@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 export const BackWall=()=>{
     const [data,setData]=useState([]);
 
-    useEffect(()=>{
+    const autofetch=()=>{
         axios.get("http://localhost:3001/pict0/tableWall")
         .then((res)=>{
             setData(res.data);
@@ -16,7 +16,24 @@ export const BackWall=()=>{
         .catch((err)=>{
             console.err(err);
         })
+    }
+
+    useEffect(()=>{
+        autofetch();
     },[]);
+
+    const updateWall=async(id)=>{
+        await axios.patch(`http://localhost:3001/pict0/tableWall/${id}`,{user:localStorage.userID})
+        .then((res)=>{
+          if(res.data.done) autofetch();
+          else {
+            alert("unauthorized user modifying!!");
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    }
 
     return(<>
         <div className="centering" style={{ height: "80vh", width: "100vw" }}>
@@ -48,7 +65,9 @@ export const BackWall=()=>{
                                 return(<>
                                     <button 
                                         key={index} 
-                                        className={`back-wall-but ${info.state === 1 ? "green-button" : "white-button"}`}>
+                                        className={`back-wall-but ${info.state === 1 ? "green-button" : "white-button"}`}
+                                        title={info.user} onClick={()=>{updateWall(info._id)}}
+                                    >
                                         🪑
                                     </button>
                                 </>)
@@ -65,7 +84,9 @@ export const BackWall=()=>{
                                 return(<>
                                     <button 
                                         key={index} 
-                                        className={`back-wall-but ${info.state === 1 ? "green-button" : "white-button"}`}>
+                                        className={`back-wall-but ${info.state === 1 ? "green-button" : "white-button"}`}
+                                        title={info.user} onClick={()=>{updateWall(info._id)}}
+                                    >
                                         🪑
                                     </button>
                                 </>)
