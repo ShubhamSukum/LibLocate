@@ -2,38 +2,40 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../locate.css";
 import { useEffect, useState } from "react";
+import {CommonNav} from "../commonNav"
 
 export const Boxes = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
+  const autofetch=()=>{
     axios.get("http://localhost:3001/pict0/boxes").then((res) => {
     //   console.log(res.data);
       setData(res.data);
     });
+  }
+
+  useEffect(() => {
+      autofetch()
   }, []);
+
+  const updateRight=async(ID,id,ind)=>{
+    console.log(ID,id,ind);
+    await axios.patch(`http://localhost:3001/pict0/boxes/right/${ID}`,{user:localStorage.userID,id,ind})
+        .then((res)=>{
+          if(res.data.done) autofetch();
+          else {
+            alert("unauthorized user modifying!!");
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+  }
 
   return (
     <>
       <div className="centering" style={{ height: "88vh", width: "100vw"}}>
-        {/* KINDA NAV */}
-        <div className="boxex-center">
-          <div
-            style={{
-              position: "relative",
-              width: "80vw",
-              height: "8vh",
-              marginBottom: "2vh",
-            }}
-          >
-            <Link to={"/locate"} className="btn btn-light lefty">
-              Back to Locate
-            </Link>
-            <h1 style={{ display: "inline-block", color: "white" }} className="fw-bold">
-              BOXES
-            </h1>
-          </div>
-          {/* KINDA NAV */}
+          <CommonNav name="BOXES" />
 
         {data.map((info, index) => {
         return info && (
@@ -50,9 +52,10 @@ export const Boxes = () => {
                     {info.right.map((val, ind) => {
                     return (
                         <button
-                        className={`boxex-buty ${val.state === 1 ? "green-button" : "white-button"}`}
-                        key={ind}
-                        title={val.user}
+                          className={`boxex-buty ${val.state === 1 ? "green-button" : "white-button"}`}
+                          key={ind}
+                          title={val.user}
+                          onClick={()=>{updateRight(info._id,val._id,ind)}}
                         >
                         🪑
                         </button>
@@ -82,7 +85,6 @@ export const Boxes = () => {
         })}
 
         </div>
-      </div>
     </>
   );
 };
