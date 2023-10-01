@@ -18,7 +18,7 @@ export const BoxesBack = () => {
         axios.get("http://localhost:3001/pict0/backBoxesTables")
         .then((res)=>{
             setTable(res.data);
-            console.log(res.data);
+            // console.log(res.data);
         })
         .catch((err)=>{
             console.log(err);
@@ -41,6 +41,62 @@ export const BoxesBack = () => {
           console.log(err);
         })
     }
+
+    // ********************************TABLE modifications********************************
+
+    const updateRight=async(id)=>{
+        await axios.patch(`http://localhost:3001/pict0/backBoxesTables/right/${id}`,{user:localStorage.userID})
+        .then((res)=>{
+          if(res.data.done) autofetch();
+          else {
+            alert("unauthorized user modifying!!");
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    }
+
+    const updateLeft=async(id)=>{
+        await axios.patch(`http://localhost:3001/pict0/backBoxesTables/left/${id}`,{user:localStorage.userID})
+        .then((res)=>{
+          if(res.data.done) autofetch();
+          else {
+            alert("unauthorized user modifying!!");
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    }
+
+    const updateTop=async(id)=>{
+        await axios.patch(`http://localhost:3001/pict0/backBoxesTables/top/${id}`,{user:localStorage.userID})
+        .then((res)=>{
+          if(res.data.done) autofetch();
+          else {
+            alert("unauthorized user modifying!!");
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    }
+
+    const updateBottom=async(id)=>{
+        await axios.patch(`http://localhost:3001/pict0/backBoxesTables/bottom/${id}`,{user:localStorage.userID})
+        .then((res)=>{
+          if(res.data.done) autofetch();
+          else {
+            alert("unauthorized user modifying!!");
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    }
+
+    // ********************************TABLE modifications********************************
 
     return (
         <>
@@ -94,22 +150,22 @@ export const BoxesBack = () => {
                                         <div className="single-table" key={index}>                                           
                                                 <button className={`right1 chair 
                                                     ${data.right.state === 1 ? "green-button" : "white-button"}`}
-                                                    title={data.right.user}
+                                                    title={data.right.user} onClick={()=>{updateRight(data._id)}}
                                                 >🪑</button>
 
                                                 <button className={`top1 chair 
                                                     ${data.top.state === 1 ? "green-button" : "white-button"}`}
-                                                    title={data.top.user}
+                                                    title={data.top.user} onClick={()=>{updateTop(data._id)}}
                                                 >🪑</button>
 
                                                 <button className={`left1 chair 
                                                     ${data.left.state === 1 ? "green-button" : "white-button"}`}
-                                                    title={data.left.user}
+                                                    title={data.left.user} onClick={()=>{updateLeft(data._id)}}
                                                 >🪑</button>
 
                                                 <button className={`bottom1 chair 
                                                     ${data.bottom.state === 1 ? "green-button" : "white-button"}`}
-                                                    title={data.bottom.user}
+                                                    title={data.bottom.user} onClick={()=>{updateBottom(data._id)}}
                                                 >🪑</button>
     
                                             <div className="center-table"></div>
