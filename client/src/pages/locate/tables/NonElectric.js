@@ -44,6 +44,19 @@ export const NonElectric=()=>{
         })
     }
 
+    const updateSmallWall=async(id)=>{
+        await axios.patch(`http://localhost:3001/pict0/smallWall/${id}`,{user:localStorage.userID})
+        .then((res)=>{
+          if(res.data.done) autofetch();
+          else {
+            alert("unauthorized user modifying!!");
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    }
+
     return(<>
         <div className="centering" style={{ height: "87vh", width: "100vw" }}>
             <CommonNav name="NON ELECTRIC TABLES"/>
@@ -152,7 +165,9 @@ export const NonElectric=()=>{
                                         return(
                                             <button className={`fr buty ${data.state === 1 ? "green-button" : "white-button"}`}
                                                 title={data.user}
-                                                key={index}>
+                                                key={index}
+                                                onClick={()=>{updateSmallWall(data._id)}}
+                                            >
                                                 🪑
                                             </button>
                                        ) 
