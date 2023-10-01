@@ -8,7 +8,7 @@ export const NonElectric=()=>{
     const [data,setData]=useState([]);
     const [wall,setWall]=useState([]);
 
-    useEffect(()=>{
+    const autofetch=()=>{
         axios.get("http://localhost:3001/pict0/nonElecTable")
         .then((res)=>{
             setData(res.data);
@@ -20,12 +20,29 @@ export const NonElectric=()=>{
         axios.get("http://localhost:3001/pict0/smallWall")
         .then((res)=>{
             setWall(res.data);
-            console.log(res.data);
         })
         .catch((err)=>{
             console.error(err);
         });
+    }
+
+    useEffect(()=>{
+        autofetch();
     },[]);
+
+    const updateTable=async(id,section)=>{
+        // console.log({id,section});
+        await axios.patch(`http://localhost:3001/pict0/nonElecTable/${section}/${id}`,{user:localStorage.userID})
+        .then((res)=>{
+          if(res.data.done) autofetch();
+          else {
+            alert("unauthorized user modifying!!");
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    }
 
     return(<>
         <div className="centering" style={{ height: "87vh", width: "100vw" }}>
@@ -40,25 +57,29 @@ export const NonElectric=()=>{
                                     <div className="elec-table" key={index}>
                                         <button 
                                          className={`R elec-but ${info.right.state === 1 ? "green-button" : "white-button"}`}
-                                         title={info.right.user}>
+                                         title={info.right.user} 
+                                         onClick={()=>{updateTable(info._id,"right")}}>
                                             🪑
                                         </button>
 
                                         <button 
                                          className={`T elec-but ${info.top.state === 1 ? "green-button" : "white-button"}`}
-                                         title={info.top.user}>
+                                         title={info.top.user}
+                                         onClick={()=>{updateTable(info._id,"top")}}>
                                             🪑
                                         </button>
 
                                         <button 
                                          className={`L elec-but ${info.left.state === 1 ? "green-button" : "white-button"}`}
-                                         title={info.left.user}>
+                                         title={info.left.user}
+                                         onClick={()=>{updateTable(info._id,"left")}}>
                                             🪑
                                         </button>
 
                                         <button 
                                          className={`D elec-but ${info.bottom.state === 1 ? "green-button" : "white-button"}`}
-                                         title={info.bottom.user}>
+                                         title={info.bottom.user}
+                                         onClick={()=>{updateTable(info._id,"bottom")}}>
                                             🪑
                                         </button>
 
@@ -91,25 +112,29 @@ export const NonElectric=()=>{
                                             <div className="elec-table" key={index}>
                                                 <button 
                                                 className={`R elec-but ${info.right.state === 1 ? "green-button" : "white-button"}`}
-                                                title={info.right.user}>
+                                                title={info.right.user}
+                                                onClick={()=>{updateTable(info._id,"right")}}>
                                                     🪑
                                                 </button>
 
                                                 <button 
                                                 className={`T elec-but ${info.top.state === 1 ? "green-button" : "white-button"}`}
-                                                title={info.top.user}>
+                                                title={info.top.user}
+                                                onClick={()=>{updateTable(info._id,"top")}}>
                                                     🪑
                                                 </button>
 
                                                 <button 
                                                 className={`L elec-but ${info.left.state === 1 ? "green-button" : "white-button"}`}
-                                                title={info.left.user}>
+                                                title={info.left.user}
+                                                onClick={()=>{updateTable(info._id,"left")}}>
                                                     🪑
                                                 </button>
 
                                                 <button 
                                                 className={`D elec-but ${info.bottom.state === 1 ? "green-button" : "white-button"}`}
-                                                title={info.bottom.user}>
+                                                title={info.bottom.user}
+                                                onClick={()=>{updateTable(info._id,"bottom")}}>
                                                     🪑
                                                 </button>
 
