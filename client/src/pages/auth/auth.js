@@ -71,13 +71,14 @@ export const Login=()=>{
         })
     }
 
-    return(<div className="page-body w-50 mx-auto p-5 mt-4 border shadow">
+    return(<div className="w-50 mx-auto p-5 mt-4 border shadow" 
+            style={{background: "linear-gradient(rgba(220,220,255,0.4) 85%, rgba(255,255,255,0.5) 100%)"}}>
         <GoogleOAuthProvider
             clientId={client_Id}
         >
             <h1 className="fw-bold">Log In</h1>
             <form onSubmit={logSubmit}>
-                <br/>
+                {/* <br/>
                 <input 
                     type="text" className="form-control" 
                     placeholder="Username"
@@ -99,13 +100,13 @@ export const Login=()=>{
 
                 <br/>
                 <br/>
-                <hr/>
+                <hr/> */}
 
                 {
                     user?(
                         <div>Logged In</div>
                     ):(
-                        <div className="mt-3">
+                        <div className="mt-3 ">
                             <center>
                                 <GoogleLogin
                                     onSuccess={(res)=>{
@@ -119,9 +120,9 @@ export const Login=()=>{
                 }
 
                 <br/>
-                <p style={{color:"black",fontSize:"2vh"}} className="fw-bold" >NEW HERE ??</p>
-                <h3 className="fw-bold">Create new account </h3>
-                <Link to={"/signup"} className="btn btn-info fw-bold">Sign UP</Link>
+                {/* <p style={{color:"black",fontSize:"2vh"}} className="fw-bold" >NEW HERE ??</p> */}
+                <h3 className="fw-bold">For Now Functionality are limited to Gmail Id only</h3>
+                {/* <Link to={"/signup"} className="btn btn-info fw-bold">Sign UP</Link> */}
             </form>
         </GoogleOAuthProvider>
     </div>)

@@ -31,8 +31,8 @@ export const Navbar=()=>{
                 {
                     !ourCookie?
                         (<>
-                            <Link to="/signup" className="navbar-brand fw-bold whity">Sign Up</Link>
-                            <Link to="/login" className="navbar-brand fw-bold whity">Login In</Link>
+                            {/* <Link to="/signup" className="navbar-brand fw-bold whity">Sign Up</Link> */}
+                            <Link to="/login" className="navbar-brand fw-bold whity">Log In</Link>
                         </>)
                     :
                         (<>

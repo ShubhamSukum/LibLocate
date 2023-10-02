@@ -4,7 +4,9 @@ import {useState,useEffect} from "react";
 import Cookies from "js-cookie";
 
 // pages
-import { Login , SignUP } from "./pages/auth/auth";
+import { Login } from "./pages/auth/auth";
+// import { SignUP } from "./pages/auth/auth"; // removed
+
 import { Home } from "./pages/home/home";
 import { Locate } from './pages/locate/locate';
 import { HomePost } from "./pages/home/homePost";
@@ -34,7 +36,7 @@ function App() {
 
               <Route path='/' element={<ProtectedRoute> <Home/> </ProtectedRoute>}/>
               <Route path='/login' element={<Login/>}/>
-              <Route path='/signup' element={<SignUP/>}/>
+              {/* <Route path='/signup' element={<SignUP/>}/> */}
               <Route path='/locate' element={<ProtectedRoute> <Locate/> </ProtectedRoute>}/>
               <Route path='/post/:postId' element={<ProtectedRoute> <HomePost/> </ProtectedRoute>}/>
 
