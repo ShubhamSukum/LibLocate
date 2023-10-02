@@ -50,6 +50,7 @@ export const Login=()=>{
 
     const signed=async(res)=>{
         const decoded=await jwt_decode(res.credential);
+        console.log(decoded);
         const user={
             _id:decoded.sub,
             email:decoded.email,
