@@ -3,6 +3,11 @@ import mongoose from 'mongoose';
 const mongooseSchema = new mongoose.Schema({
   right: [
     {
+      _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        auto: true,
+        required: true,
+      },
       user: {
         type: String,
         required: true
@@ -15,6 +20,11 @@ const mongooseSchema = new mongoose.Schema({
   ],
   left: [
     {
+      _id: {
+      type: mongoose.Schema.Types.ObjectId,
+      auto: true,
+      required: true,
+      },
       user: {
         type: String,
         required: true

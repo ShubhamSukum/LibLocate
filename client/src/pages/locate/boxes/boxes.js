@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "../locate.css";
 import { useEffect, useState } from "react";
@@ -9,7 +8,6 @@ export const Boxes = () => {
 
   const autofetch=()=>{
     axios.get("http://localhost:3001/pict0/boxes").then((res) => {
-    //   console.log(res.data);
       setData(res.data);
     });
   }
@@ -18,9 +16,23 @@ export const Boxes = () => {
       autofetch()
   }, []);
 
-  const updateRight=async(ID,id,ind)=>{
-    console.log(ID,id,ind);
-    await axios.patch(`http://localhost:3001/pict0/boxes/right/${ID}`,{user:localStorage.userID,id,ind})
+  const updateRight=async(id,ind)=>{
+    console.log(id,ind);
+    await axios.patch(`http://localhost:3001/pict0/boxes/right/${id}`,{user:localStorage.userID,ind})
+        .then((res)=>{
+          if(res.data.done) autofetch();
+          else {
+            alert("unauthorized user modifying!!");
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+  }
+
+  const updateLeft=async(id,ind)=>{
+    console.log(id,ind);
+    await axios.patch(`http://localhost:3001/pict0/boxes/left/${id}`,{user:localStorage.userID,ind})
         .then((res)=>{
           if(res.data.done) autofetch();
           else {
@@ -55,7 +67,7 @@ export const Boxes = () => {
                           className={`boxex-buty ${val.state === 1 ? "green-button" : "white-button"}`}
                           key={ind}
                           title={val.user}
-                          onClick={()=>{updateRight(info._id,val._id,ind)}}
+                          onClick={()=>{updateRight(info._id,ind)}}
                         >
                         🪑
                         </button>
@@ -72,6 +84,7 @@ export const Boxes = () => {
                         className={`boxex-buty ${val.state === 1 ? "green-button" : "white-button"}`}
                         key={ind} // Add a unique key prop here
                         title={val.user}
+                        onClick={()=>{updateLeft(info._id,ind)}}
                         >
                         🪑
                         </button>
